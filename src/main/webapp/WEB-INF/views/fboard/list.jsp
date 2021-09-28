@@ -10,15 +10,32 @@
                 <div class="card-header">
                     <h3 class="card-title float-left">자유게시판</h3>
 
-                    <div class="card-tools float-right">
-                        <div class="input-group input-group-sm" style="width: 350px;">
-                            <input type="text" name="table_search" class="form-control" placeholder="Search">
 
-                            <div class="input-group-append float-right">
-                                <button type="submit" class="btn btn-info ">검색
-                                </button>
+                    <form action="/fboard/list" method="get">
+                        <input type="hidden" name="page" value="1">
+                        <input type="hidden" name="size" value="${pageMaker.size}">
+                        <div class="col-sm-3">
+                            <!-- select -->
+                            <div class="form-group">
+                                <label>Search</label>
+                                <select name="type" class="custom-select">
+                                    <option value="">---</option>
+                                    <option value="TCW" ${pageRequestDTO.type == "TCW" ? 'selected' : ''}>전체</option> <!-- selected는 고정하는것 -->
+                                    <option value="T" ${pageRequestDTO.type == "T" ? 'selected' : ''}>제목</option>
+                                    <option value="TC" ${pageRequestDTO.type == "TC" ? 'selected' : ''}>제목/내용</option>
+                                    <option value="W" ${pageRequestDTO.type == "W" ? 'selected' : ''}>작성자</option>
+                                </select>
                             </div>
                         </div>
+                        <div class="col-sm-9">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" name="keyword" value="${pageRequestDTO.keyword}">
+                                <span class="input-group-append">
+                                                <button type="submit" class="btn btn-info btn-flat">검색</button>
+                                            </span>
+                            </div>
+                        </div>
+                    </form>
                     </div>
                 </div>
                 <!-- /.card-header -->
@@ -77,6 +94,11 @@
 <form id="actionForm" action="/fboard/list" method="get">
     <input type="hidden" name="page" value="${pageMaker.page}">
     <input type="hidden" name="size" value="${pageMaker.size}">
+
+    <c:if test="${pageRequestDTO.type != null}">
+        <input type="hidden" name="type" value="${pageRequestDTO.type}">
+        <input type="hidden" name="keyword" value="${pageRequestDTO.keyword}">
+    </c:if>
 </form>
 
 
@@ -89,6 +111,11 @@
     const actionForm = document.querySelector("#actionForm")
 
     const result = '${result}';
+
+    // if(result && result !== '') {
+    //     $('#modal-sm').modal('show')
+    //     window.history.replaceState(null,'','/fboard/list')
+    // }
 
     function movePage(pageNum) {
         // event.preventDefault()

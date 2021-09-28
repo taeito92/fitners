@@ -31,6 +31,9 @@
 
     <select id="getFboardList" resultType="org.dodream.web.fitners.fboard.domain.Fboard">
         select * from tbl_fboard
+
+        <include refid="search"></include>
+
         order by bno desc limit #{skip},#{size}
     </select>
 

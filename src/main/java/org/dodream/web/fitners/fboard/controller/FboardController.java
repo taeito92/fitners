@@ -89,6 +89,11 @@ public class FboardController {
         redirectAttributes.addAttribute("page", pageRequestDTO.getPage());
         redirectAttributes.addAttribute("size", pageRequestDTO.getSize());
 
+        if (pageRequestDTO.getType() != null) {
+            redirectAttributes.addAttribute("type", pageRequestDTO.getType());
+            redirectAttributes.addAttribute("keyword", pageRequestDTO.getKeyword());
+        }
+
         return "redirect:/fboard/read";
     }
 
