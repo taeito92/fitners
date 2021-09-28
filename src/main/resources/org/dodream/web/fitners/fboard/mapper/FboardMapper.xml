@@ -12,6 +12,23 @@
         </selectKey>
     </insert>
 
+    <sql id="search"> <!-- sql에 구멍을 내는 것 -->
+        <!-- separator는 반복이 끝나는 구간마다 " OR "를 넣으라는 의미 -->
+        <if test="type != null">
+            <foreach collection="arr" item="item" separator=" OR " open="WHERE (" close=")">
+                <if test="item == 'T'.toString()">
+                    title like concat('%', #{keyword}, '%')
+                </if>
+                <if test="item == 'C'.toString()">
+                    content like concat('%', #{keyword}, '%')
+                </if>
+                <if test="item == 'W'.toString()">
+                    writer like concat('%', #{keyword}, '%')
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
     <select id="getFboardList" resultType="org.dodream.web.fitners.fboard.domain.Fboard">
         select * from tbl_fboard
         order by bno desc limit #{skip},#{size}
