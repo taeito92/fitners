@@ -14,7 +14,7 @@
                     <form action="/fboard/list" method="get">
                         <input type="hidden" name="page" value="1">
                         <input type="hidden" name="size" value="${pageMaker.size}">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3" style="float: right">
                             <!-- select -->
                             <div class="form-group">
                                 <label>Search</label>
@@ -27,11 +27,11 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-sm-9">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" name="keyword" value="${pageRequestDTO.keyword}">
+                        <div class="col-sm-9" style="float: right" >
+                            <div class="input-group input-group-sm" style="width: 300px">
+                                <input type="text" class="form-control" name="keyword" value="${pageRequestDTO.keyword}" >
                                 <span class="input-group-append">
-                                                <button type="submit" class="btn btn-info btn-flat">검색</button>
+                                                <button type="submit" class="btn btn-info btn-flat" >검색</button>
                                             </span>
                             </div>
                         </div>
