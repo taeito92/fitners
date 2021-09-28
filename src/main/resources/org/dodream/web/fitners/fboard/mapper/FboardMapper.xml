@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dodream.web.fitners.fboard.mapper.FboardMapper">
+
+    <insert id="insertFboard">
+        insert into tbl_fboard (title, content, writer)
+        values (#{title}, #{content}, #{writer})
+        <selectKey order="AFTER" resultType="long" keyProperty="bno">
+            select last_insert_id() <!-- 마지막으로 insert한 후 order에 맞게 insert한 숫자를 select함 -->
+        </selectKey>
+    </insert>
+
+    <select id="getFboardList" resultType="org.dodream.web.fitners.fboard.domain.Fboard">
+        select * from tbl_fboard
+        order by bno desc limit #{skip},#{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(bno) from tbl_fboard;
+    </select>
+
+    <resultMap id="boardMap" type="org.dodream.web.fitners.fboard.domain.Fboard">
+        <id property="bno" column="bno"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="writer" column="writer"/>
+        <result property="regDate" column="regDate"/>
+        <result property="modDate" column="modDate"/>
+
+        <collection property="attachList" resultMap="attachMap"/>
+    </resultMap>
+
+    <resultMap id="attachMap" type="org.dodream.web.fitners.fboard.domain.FboardAttach">
+        <result property="uuid" column="uuid"/>
+        <result property="bno" column="bno"/>
+        <result property="fileName" column="fileName"/>
+        <result property="path" column="path"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+    <select id="select" resultMap="boardMap">
+        select *
+        from
+             tbl_fboard fboard left join tbl_fboard_attach tfa on fboard.bno = tfa.bno
+        where fboard.bno = #{bno}
+    </select>
+
+    <update id="update">
+        update tbl_fboard set title = #{title}, content = #{content}, modDate = now()
+        where bno = #{bno}
+    </update>
+
+    <delete id="delete">
+        delete from tbl_fboard where bno = #{bno}
+    </delete>
+
+    <insert id="insertAttach">
+        insert into tbl_fboard_attach (uuid, bno, path, fileName, image)
+        values (#{uuid}, #{bno}, #{path}, #{fileName}, #{image})
+    </insert>
+
+    <delete id="deleteAttach">
+        delete from tbl_fboard_attach where bno = #{bno}
+    </delete>
+
+</mapper>
