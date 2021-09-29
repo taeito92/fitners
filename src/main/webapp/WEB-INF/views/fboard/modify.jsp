@@ -30,7 +30,7 @@
                                 <label for="fboardContent"></label>
                                 <textarea rows="6" name="content" class="form-control" id="fboardContent"
                                           placeholder="내용을 입력하세요..."><c:out
-                                        value="${boardDTO.content}"/>"</textarea>
+                                        value="${boardDTO.content}"/></textarea>
                             </div>
                             <div class="temp">
                                 <!-- 실제 attach div 자리 -->
@@ -83,6 +83,7 @@
     <input type="hidden" name="size" value="${pageRequestDTO.size}">
 </form>
 
+<%@include file="../includes/footer.jsp"%>
 
 </body>
 

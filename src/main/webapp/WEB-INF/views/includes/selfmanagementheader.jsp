@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Minishop - Free Bootstrap 4 Template by Colorlib</title>
+    <title>selfmanagement</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -26,9 +26,17 @@
     <link rel="stylesheet" href="/resources/dist/css/flaticon.css">
     <link rel="stylesheet" href="/resources/dist/css/icomoon.css">
     <link rel="stylesheet" href="/resources/dist/css/style.css">
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/resources/plugins/fontawesome-free/css/all.min.css">
+    <!-- fullCalendar -->
+    <link rel="stylesheet" href="resources/plugins/fullcalendar/main.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="resources/dist/css/adminlte.min.css">
 </head>
 <style>
-
     * {
         font-family: '한컴 말랑말랑 Regular';
     }
@@ -102,3 +110,13 @@
 </nav>
 <!-- END nav -->
 
+<div class="hero-wrap hero-bread" style="background-image: url('/resources/images/bg456.jpg');">
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h1 class="mb-0 bread">FITNERS</h1>
+                <h3 class="breadcrumbs"><span>Management</span></h3>
+            </div>
+        </div>
+    </div>
+</div>

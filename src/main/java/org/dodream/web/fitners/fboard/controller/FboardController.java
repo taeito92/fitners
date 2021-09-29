@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @Log4j2
 @RequestMapping("/fboard/*")
@@ -43,11 +45,13 @@ public class FboardController {
         return "redirect:/fboard/list";
     }
 
-    @GetMapping("/list")
+    @GetMapping({"/list","/list2"})
     public void listGet(PageRequestDTO pageRequestDTO, Model model) {
         log.warn("=========================fboard list get===================");
 
         PageResponseDTO<FboardDTO> pageResponseDTO = fboardService.getList(pageRequestDTO);
+        List<FboardDTO> fboardDTOList = pageResponseDTO.getDtoList();
+        log.warn(fboardDTOList);
 
         model.addAttribute("dtoList", pageResponseDTO.getDtoList());
 
