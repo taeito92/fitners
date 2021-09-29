@@ -15,8 +15,6 @@ public interface FreplyService {
 
     int modify(FreplyDTO fReplyDTO);
 
-
-
     default Freply dtoToEntity(FreplyDTO freplyDTO) {
         Freply feply = Freply.builder()
                 .rno(freplyDTO.getRno())

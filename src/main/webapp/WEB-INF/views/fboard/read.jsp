@@ -1,121 +1,135 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: ljw81
-  Date: 2021-09-27
-  Time: 오후 12:33
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-<html>
-<head>
-    <title>Read</title>
-</head>
-<body>
+<%@include file="../includes/fboardheader.jsp" %>
 
 
-<form id="fboardRead">
-    <div>
-        <div>
-            <label for="fboardBno">BNO</label>
-            <input type="text" name="bno" value="<c:out value="${boardDTO.bno}"/>" id="fboardBno" readonly>
-        </div>
-        <div>
-            <label for="fboardTitle">Title</label>
-            <input type="text" name="title" placeholder="enter title" value="<c:out value="${boardDTO.title}"/>"
-                   id="fboardTitle" readonly>
-        </div>
-        <div>
-            <label for="fboardWriter">Writer</label>
-            <input type="text" name="writer" placeholder="enter writer" value="<c:out value="${boardDTO.writer}"/>"
-                   id="fboardWriter" readonly>
-        </div>
-        <div>
-            <label for="fboardContent">Content</label>
-            <textarea rows="3" name="content"
-                      id="fboardContent" readonly><c:out value="${boardDTO.content}"></c:out></textarea>
-        </div>
+<section class="content" style="margin-top: 10px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10" style="margin: auto">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title text-center">자유게시판</h3>
+                    </div>
 
-        <button type="button" class="toListBtn">목록</button>
-        <button type="button" class="toModifyBtn">수정/삭제</button>
-    </div>
+                    <!-- form start -->
+                    <form id="fboardRead">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fboardTitle">제목</label>
+                                <input type="text" name="title" class="form-control col-5" placeholder="제목을 입력하세요..."
+                                       value="<c:out value="${boardDTO.title}"/> " id="fboardTitle" readonly>
+                            </div>
+                            <div>
+                                <label for="fboardWriter">작성자</label>
+                                <input type="text" name="writer" class="form-control col-5" placeholder="작성자를 입력하세요..."
+                                       value="<c:out value="${boardDTO.writer}"/>" id="fboardWriter" readonly>
+                            </div>
+                            <div>
+                                <label for="fboardContent"></label>
+                                <textarea rows="6" name="content" class="form-control" id="fboardContent"
+                                          placeholder="내용을 입력하세요..." readonly><c:out
+                                        value="${boardDTO.content}"/></textarea>
+                            </div>
+                            <div class="temp">
+                                <!-- 실제 attach div 자리 -->
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-info float-left toListBtn">목록</button>
+                                <button type="button" class="btn btn-warning float-right toModifyBtn">수정/삭제</button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
 
-    <div>
-        <c:forEach items="${boardDTO.files}" var="attach">
-            <div>
-                <c:if test="${attach.image}">
-                    <img src="/viewFile?file=${attach.getThumbnail()}" onclick="javacript:showOrigin('${attach.getFileLink()}')">
-                </c:if>
-                    ${attach.fileName}
+                    <div style="margin-left: 15px">
+                        <c:forEach items="${boardDTO.files}" var="attach">
+                            <div>
+                                <c:if test="${attach.image}">
+                                    <img src="/viewFile?file=${attach.getThumbnail()}"
+                                         onclick="javacript:showOrigin('${attach.getFileLink()}')">
+                                </c:if>
+                                    ${attach.fileName}
+                            </div>
+                        </c:forEach>
+                    </div>
+
+                    <hr>
+                    <div class="card direct-chat direct-chat-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">댓글</h3>
+                            <span title="3 New Messages" class="badge badge-primary" id="addReplyBtn">+</span>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <div class="direct-chat-messages" id="repliesList">
+                                <!-- /.replies -->
+                            </div>
+                            <!--/.replies -->
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
             </div>
-        </c:forEach>
-    </div>
-
-    <hr>
-    <h3>replies</h3>
-    <div>
-        <button type="button" class="addReplyBtn">Add reply</button>
-        <div class="repliesList">
-
         </div>
     </div>
+</section>
 
-    <hr>
-    <%-- modal start --%>
-    <div class="modal fade" id="modal-sm">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Reply</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="text" name="replyer">
-                    <input type="text" name="reply">
-
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
-                    <button type="button" class="btn btn-primary operBtn">save change</button>
-                </div>
+<%-- modal start --%>
+<div class="modal fade" id="modal-sm">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">댓글작성</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!-- /.modal exd-->
+            <div class="modal-body">
+                작성자 : <input type="text" name="replyer" value="ID를 입력하세요"><br>
+                내용 : <input type="text" name="reply" value="내용을 입력하세요">
 
-    <!-- large modal -->
-    <div class="modal fade" id="modal-lg">
-        <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Modify/Remove</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <input type="hidden" name="rno">
-                    <input type="text" name="replyerMod">
-                    <input type="text" name="replyMod">
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-info btnModReply">Modify</button>
-                    <button type="button" class="btn btn-danger btnRem">Remove</button>
-                </div>
             </div>
-            <!-- /.modal-content -->
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">close</button>
+                <button type="button" class="btn btn-primary operBtn">save change</button>
+            </div>
         </div>
-        <!-- /.modal-dialog -->
+        <!-- /.modal-content -->
     </div>
-    <!-- /.modal -->
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal exd-->
 
-</form>
+<!-- large modal -->
+<div class="modal fade" id="modal-lg">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">댓글수정</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                작성자 : <input type="text" name="replyerMod">
+                내용 : <input type="text" name="replyMod">
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-info btnModReply">수정</button>
+                <button type="button" class="btn btn-danger btnRem">삭제</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<hr>
 
 <form id="actionForm" action="/fboard/list" method="get">
     <input type="hidden" name="page" value="${pageRequestDTO.page}">
@@ -123,7 +137,9 @@
 </form>
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<%@include file="../includes/footer.jsp" %>
+
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script src="/resources/dist/js/reply.js"></script>
 
@@ -147,13 +163,9 @@
 
 </script>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> <!-- axios를 사용하기 위해서 추가 -->
-<script src="/resources/js/reply.js"> //js 로딩 </script>
-
-<!-- 댓글목록 -->
 <script>
     function getRepliesList() {
-        const target = document.querySelector(".repliesList")
+        const target = document.querySelector("#repliesList")
         const bno = '${boardDTO.bno}'
         console.log(bno)
 
@@ -163,14 +175,14 @@
             const {rno, bno, reply, replyer, regDate, modDate} = {...replyObj}
 
             const replyList = `<div class="fboard-reply">
-               <div>
-                  <span>\${rno} -- \${replyer}</span>
-                  <span>\${regDate}</span>
-               </div>
-               <div data-rno='\${rno}' data-replyer='\${replyer}'>
-                  \${reply}
-               </div>
-            </div>`
+                <div style="margin-left: 15px">
+                    <div><strong>\${replyer}</strong></div>
+                    <div data-rno='\${rno}' data-replyer='\${replyer}'>
+                       \${reply}
+                    </div>
+                    <div style="font-size: 4pt">\${regDate}</div>
+                </div>
+                <hr>`
             return replyList
         }
 
@@ -187,48 +199,50 @@
     (function () {
         getRepliesList()
     })()
-    const modalDiv = $('#modal-sm')
+
+    //댓글추가
+    const smModalDiv = $('#modal-sm')
 
     let oper = null
 
-    document.querySelector('.addReplyBtn').addEventListener("click", function () {
+    document.querySelector("#addReplyBtn").addEventListener("click", function () {
 
-        oper = 'add' //댓글을 추가할꺼니까 oper를 add로 설정
-        modalDiv.modal('show')
+        oper = 'add'
+        smModalDiv.modal('show')
 
-    },false)
+    }, false)
 
-    //버튼 누른 경우
     document.querySelector(".operBtn").addEventListener("click", function () {
 
         const bno = '${boardDTO.bno}'
         const replyer = document.querySelector("input[name='replyer']").value //jQuery
         const reply = document.querySelector("input[name='reply']").value
 
-        if(oper === 'add') {
-            const replyObj = {bno:bno, replyer:replyer, reply:reply} //키값 할당
+        if (oper === 'add') {
+            const replyObj = {bno: bno, replyer: replyer, reply: reply} //키값 할당
             console.log(replyObj)
 
             addReply(replyObj).then(result => {
-                getList() //갱신목적 함수
-                modalDiv.modal('hide')
+                getRepliesList() //갱신목적 함수
+                smModalDiv.modal('hide')
                 document.querySelector("input[name='replyer']").value = ""
                 document.querySelector("input[name='reply']").value = ""
             })
         }
 
-    },false)
+    }, false)
+
     //수정,삭제 DOM
     const modModal = $("#modal-lg")
     const modReplyer = document.querySelector("input[name='replyerMod']")
     const modReply = document.querySelector("input[name='replyMod']")
     const modRno = document.querySelector("input[name='rno']")
 
-    document.querySelector(".direct-chat-messages").addEventListener("click", (e) => {
+    document.querySelector("#repliesList").addEventListener("click", (e) => {
 
         const target = e.target
         const bno = '${boardDTO.bno}'
-        if (target.matches(".direct-chat-text")) {
+        if (target.matches("#repliesList")) {
             const rno = target.getAttribute("data-rno")
             const replyer = target.getAttribute("data-replyer")
             const reply = target.innerHTML
@@ -252,7 +266,7 @@
         const rno = e.target.getAttribute("data-rno")
 
         removeReply(rno).then(result => {
-            getList()
+            getRepliesList()
 
             modModal.modal('hide');
         })
@@ -262,30 +276,14 @@
         const replyObj = {rno:modRno.value, reply:modReply.value}
 
         modifyReply(replyObj).then(result => {
-            getList()
+            getRepliesList()
 
             modModal.modal("hide")
         })
 
     },false)
 
-
 </script>
-
-
-
-
-<!-- 원본파일보기 -->
-<%--<script>
-    //모달 필요
-    const modalImage = new bootstrap.Modal(document.querySelector('#modal-image'))
-
-    function showOrigin(fileLink){
-
-        document.querySelector("#targetImage").src = `/viewFile?file=\${fileLink}`
-        modalImage.show()
-
-    }
-</script>--%>
+<!-- 댓글목록 -->
 
 </html>

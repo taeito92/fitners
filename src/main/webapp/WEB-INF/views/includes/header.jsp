@@ -30,7 +30,7 @@
 <style>
 
     * {
-        font-family: 'G마켓 산스 TTF Medium';
+        font-family: '한컴 말랑말랑 Regular';
     }
     .about{
         font-size: 16px;
@@ -93,7 +93,7 @@
                 <li class="nav-item"><a href="/about.jsp" class="nav-link">About</a></li>
                 <li class="nav-item"><a href="" class="nav-link">Matching</a></li>
                 <li class="nav-item"><a href="" class="nav-link">Self Management</a></li>
-                <li class="nav-item"><a href="" class="nav-link">FreeBoard</a></li>
+                <li class="nav-item"><a href="/fboard/list" class="nav-link">FreeBoard</a></li>
                 <li class="nav-item"><a href="" class="nav-link">Login</a></li>
 
             </ul>

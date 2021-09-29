@@ -30,8 +30,8 @@ public class FreplyController {
         return freplyService.getReplyList(bno);
     }
 
-    @DeleteMapping("/{rno}") //특정 rno를 부르면 DeleteMapping이 되도록 uri를 설계
-    public String remove(@PathVariable(name="rno") Long rno) { //PathVariable은 경로에 줬던 값을 파라미터로 바로 줄 수 있음.
+    @DeleteMapping("/{rno}")
+    public String remove(@PathVariable(name = "rno") Long rno) {
         log.info("remove reply............");
 
         log.info("rno: " + rno);
@@ -42,11 +42,11 @@ public class FreplyController {
     }
 
     @PutMapping("/{rno}")
-    public String modify(@PathVariable(name="rno") Long rno,
+    public String modify(@PathVariable(name = "rno") Long rno,
                          @RequestBody FreplyDTO FreplyDTO) {
         log.info("modify reply................");
 
-        log.info("rno : " + rno );
+        log.info("rno : " + rno);
         log.info("replyDTO : " + FreplyDTO);
         log.info("=====================================");
 

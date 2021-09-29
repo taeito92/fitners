@@ -12,8 +12,7 @@
         </selectKey>
     </insert>
 
-    <sql id="search"> <!-- sql에 구멍을 내는 것 -->
-        <!-- separator는 반복이 끝나는 구간마다 " OR "를 넣으라는 의미 -->
+    <sql id="search">
         <if test="type != null">
             <foreach collection="arr" item="item" separator=" OR " open="WHERE (" close=")">
                 <if test="item == 'T'.toString()">

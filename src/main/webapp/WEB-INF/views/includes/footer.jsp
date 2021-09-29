@@ -87,4 +87,19 @@
 <script src="/resources/dist/js/google-map.js"></script>
 <script src="/resources/dist/js/main.js"></script>
 
+<!-- jQuery -->
+<script src="/resources/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="/resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="/resources/dist/js/adminlte.js"></script>
+
+
 

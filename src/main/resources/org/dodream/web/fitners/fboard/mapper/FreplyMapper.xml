@@ -13,5 +13,13 @@
         select * from tbl_fboard_reply where bno = #{bno} order by rno asc
     </select>
 
+    <delete id="delete">
+        delete from tbl_fboard_reply where rno = #{rno}
+    </delete>
+
+    <update id="update">
+        update tbl_fboard_reply set reply = #{reply}, modDate = now() where rno = #{rno}
+    </update>
+
 
 </mapper>

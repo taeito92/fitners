@@ -24,8 +24,8 @@ public class PageRequestDTO {
         return (page - 1) * size;
     }
 
-    public String getType() { //sql if 조건을위해 type이 존재하는지 빈란인지 식별한
-        if (type == null || type.trim().length() == 0) { //trim은 공백을 제거하는 메서드
+    public String getType() {
+        if (type == null || type.trim().length() == 0) {
             return null;
         }
         return this.type;
@@ -33,7 +33,7 @@ public class PageRequestDTO {
 
     public String[] getArr() {
         return type == null? new String[]{} : type.split("");
-    } //split 기준으로 자르고 문자열로 저장(검색 좀 더 해볼 것)
+    }
 
 
 }

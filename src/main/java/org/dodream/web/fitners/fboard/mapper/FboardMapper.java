@@ -1,6 +1,5 @@
 package org.dodream.web.fitners.fboard.mapper;
 
-import org.apache.ibatis.annotations.Param;
 import org.dodream.web.fitners.common.dto.PageRequestDTO;
 import org.dodream.web.fitners.fboard.domain.Fboard;
 import org.dodream.web.fitners.fboard.domain.FboardAttach;
@@ -24,7 +23,5 @@ public interface FboardMapper {
     void insertAttach(FboardAttach fboardAttach);
 
     void deleteAttach(Long bno);
-
-    int updateReplyCnt(@Param("bno") Long bno, @Param("num") int num);
 
 }

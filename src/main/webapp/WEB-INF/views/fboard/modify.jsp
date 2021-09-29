@@ -1,67 +1,82 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
-<head>
-    <title>Modify</title>
-</head>
-<body>
-<form id="fboardModify">
-    <div>
-        <div>
-            <label for="fboardBno">BNO</label>
-            <input type="text" name="bno" value="<c:out value="${boardDTO.bno}"/>" id="fboardBno" readonly>
-        </div>
-        <div>
-            <label for="fboardTitle">Title</label>
-            <input type="text" name="title" placeholder="enter title" value="<c:out value="${boardDTO.title}"/>" id="fboardTitle">
-        </div>
-        <div>
-            <label for="fboardWriter">Writer</label>
-            <input type="text" name="writer" placeholder="enter writer" value="<c:out value="${boardDTO.writer}"/>" id="fboardWriter" readonly>
-        </div>
-        <div>
-            <label for="fboardContent">Content</label>
-            <textarea rows="3" name="content"
-                       id="fboardContent"><c:out value="${boardDTO.content}"></c:out></textarea>
-        </div>
-        <div class="temp">
-            <!-- 실제 attach div 자리 -->
-        </div>
+<%@include file="../includes/fboardheader.jsp"%>
 
-        <div>
-            <button id="toListBtn">목록</button>
-            <button id="modifyBtn">Modify</button>
-            <button id="removeBtn">Delete</button>
-        </div>
-    </div>
-</form>
+<section class="content" style="margin-top: 10px">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10" style="margin: auto">
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">${boardDTO.bno}번 게시글 수정</h3>
+                    </div>
 
-<hr>
-<div>
-    <label for="fileInputLabel">File input</label>
-    <div>
-        <input type="file" name="uploadFiles" id="fileInputLabel" multiple>
-        <label for="fileInputLabel">choose File</label>
-    </div>
-    <div>
-        <button type="button" id="uploadBtn">upload</button>
-    </div>
+                    <!-- form start -->
+                    <form id="fboardModify">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="fboardTitle">제목</label>
+                                <input type="hidden" name="bno" value="<c:out value="${boardDTO.bno}"/>" id="fboardBno" >
+                                <input type="text" name="title" class="form-control col-5" placeholder="제목을 입력하세요..."
+                                       value="<c:out value="${boardDTO.title}"/> " id="fboardTitle">
+                            </div>
+                            <div>
+                                <label for="fboardWriter">작성자</label>
+                                <input type="text" name="writer" class="form-control col-5" placeholder="작성자를 입력하세요..."
+                                       value="<c:out value="${boardDTO.writer}"/>" id="fboardWriter" readonly >
+                            </div>
+                            <div>
+                                <label for="fboardContent"></label>
+                                <textarea rows="6" name="content" class="form-control" id="fboardContent"
+                                          placeholder="내용을 입력하세요..."><c:out
+                                        value="${boardDTO.content}"/>"</textarea>
+                            </div>
+                            <div class="temp">
+                                <!-- 실제 attach div 자리 -->
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-info float-left" id="toListBtn">목록</button>
+                                <button type="button" class="btn btn-warning float-right" id="modifyBtn">수정</button>
+                                <button type="button" class="btn btn-danger float-right" id="removeBtn">삭제</button>
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
 
-    <!-- 원래 attach 물고있는 code -->
-    <div class="uploadResult">
-        <c:forEach items="${boardDTO.files}" var="attach">
-            <c:if test="${attach.image}">
-                <div data-uuid="${attach.uuid}" data-fileName="${attach.fileName}" data-uploadpath="${attach.uploadPath}" data-image="${attach.image}">
-                <img src="/viewFile?file=${attach.getThumbnail()}">
-                <span>${attach.fileName}</span>
-                <button onclick="javascript:removeDiv(this)">X</button>
+                    <div style="margin-left: 15px">
+                        <label for="fboardAttach">파일 첨부</label>
+                        <span class="input-group" id="fboardAttach">
+                            <input type="file" name="uploadFiles" id="fileInputLabel" multiple>
+                            <label for="fileInputLabel"></label>
+
+                            <button type="button" class="btn btn-info" id="uploadBtn" style="alignment: right">upload</button>
+                        </span>
+
+                        <!-- 원래 attach 물고있는 code -->
+                        <div class="uploadResult">
+                            <c:forEach items="${boardDTO.files}" var="attach">
+                                <c:if test="${attach.image}">
+                                    <div data-uuid="${attach.uuid}" data-fileName="${attach.fileName}" data-uploadpath="${attach.uploadPath}" data-image="${attach.image}">
+                                        <img src="/viewFile?file=${attach.getThumbnail()}">
+                                        <span>${attach.fileName}</span>
+                                        <button onclick="javascript:removeDiv(this)">X</button>
+                                    </div>
+                                </c:if>
+                            </c:forEach>
+                        </div>
+
+                    </div>
+
+                    <hr>
+
                 </div>
-            </c:if>
-        </c:forEach>
+                <!-- /.card -->
+            </div>
+        </div>
     </div>
+</section>
 
-</div>
 
 <form id="actionForm" action="/fboard/list" method="get">
     <input type="hidden" name="page" value="${pageRequestDTO.page}">

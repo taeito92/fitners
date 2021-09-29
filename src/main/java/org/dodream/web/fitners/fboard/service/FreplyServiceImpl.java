@@ -40,5 +40,4 @@ public class FreplyServiceImpl implements FreplyService{
         return freplyMapper.update(dtoToEntity(fReplyDTO));
     }
 
-
 }
