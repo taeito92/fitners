@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 @RequiredArgsConstructor
-public class FboardServiceeImpl implements FboardService {
+public class FboardServiceImpl implements FboardService {
 
     private final FboardMapper fboardMapper;
 

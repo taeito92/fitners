@@ -11,9 +11,9 @@
 </style>
 <section class="listSection">
     <!-- /.row -->
-    <div class="row" style="margin-top: 10px">
+    <div class="row" style="margin-top: 15px">
         <div class="col-10" style="margin: auto">
-            <div class="card card-primary card-outline">
+            <div class="card">
                 <div class="card-header">
                     <h3 class="card-title text-center">자유게시판</h3>
 
@@ -34,26 +34,35 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <table class="table table-hover text-nowrap listTable">
-                        <thead>
-                        <tr>
-                            <th class="bnoTh" style="margin: auto">번호</th>
-                            <th style="margin: auto">제목</th>
-                            <th style="margin: auto">작성자</th>
-                            <th style="margin: auto">작성일</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <c:forEach items="${dtoList}" var="dto">
-                            <tr>
-                                <td class="bnoTh" style="margin: auto"><c:out value="${dto.bno}"></c:out></td>
-                                <td style="margin: auto"><a href="javascript:moveRead(${dto.bno})"><c:out value="${dto.title}"></c:out></a></td>
-                                <td style="margin: auto"><c:out value="${dto.writer}"></c:out></td>
-                                <td style="margin: auto"><c:out value="${dto.regDate}"></c:out></td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
+
+                    <!-- Table row -->
+                    <div class="row">
+                        <div class="col-12 table-responsive">
+                            <table class="table table">
+                                <thead>
+                                <tr>
+                                    <th class="bnoTh">번호</th>
+                                    <th>제목</th>
+                                    <th>작성자</th>
+                                    <th>작성일</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach items="${dtoList}" var="dto">
+                                    <tr>
+                                        <td class="bnoTh"><c:out value="${dto.bno}"></c:out></td>
+                                        <td><a href="javascript:moveRead(${dto.bno})"><c:out value="${dto.title}"></c:out></a></td>
+                                        <td><c:out value="${dto.writer}"></c:out></td>
+                                        <td><c:out value="${dto.regDate}"></c:out></td>
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+
                 </div>
                 <!-- /.card-body -->
             </div>

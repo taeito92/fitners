@@ -36,7 +36,7 @@ public class FboardMapperTests {
 */
     @Test
     public void selectTest() {
-        Fboard fboard = fboardMapper.select(120L);
+        Fboard fboard = fboardMapper.select(144L);
         log.warn(fboard);
     }
 

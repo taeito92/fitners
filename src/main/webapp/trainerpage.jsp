@@ -19,12 +19,12 @@
                 </div>
                 <div class="card-body p-0" style="width: 200px; height: auto;  ">
                     <ul class="nav  flex-column" style="width: 200px; height: auto;" >
-                        <li class="nav-item active" id="biddinglist" onclick="test()" >
+                        <li class="nav-item active" id="biddinglist" onclick="test2()" >
                             <a href="#trainermanagement"  class="nav-link">
                                 <i class="fas fa-biding"></i> 입찰목록
                             </a>
                         </li>
-                        <li class="nav-item" id="biddinglist2" onclick="test2()">
+                        <li class="nav-item" id="biddinglist2" onclick="test()">
                             <a href="#asdasd"  class="nav-link">
                                 <i class="far fa-envelope"></i> 회원관리
                             </a>
@@ -89,19 +89,19 @@
                             <table class="table table-striped" id="asdasd">
                                 <thead>
                                 <tr>
-                                    <th>회차</th>
-                                    <th>트레이너 이름(아이디)</th>
+                                    <th>회원 이름(아이디)</th>
                                     <th>선택 관리유형</th>
                                     <th>관리유형 내용</th>
+                                    <th>회차</th>
                                     <th>날짜</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr id="trainglist">
-                                    <td>3</td>
-                                    <td>곽용태</td>
-                                    <td>근성장</td>
-                                    <td>하체</td>
+                                <tr style="cursor: pointer" onclick="location.href='trainingdetails.jsp'">
+                                    <td >강경원</td>
+                                    <td>PT</td>
+                                    <td>바디프로필목적</td>
+                                    <td>3/10</td>
                                     <td>2021/01/09</td>
                                 </tr>
                                 <tr>
@@ -145,13 +145,14 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
+                                    <tr style="cursor: pointer" onclick="location.href='trainerRead.jsp'">
                                         <td>4</td>
                                         <td>제목</td>
                                         <td>taeito</td>
                                         <td>식단</td>
                                         <td>5000</td>
                                         <td>15분 남음</td>
+
                                     </tr>
                                     <tr>
                                         <td>3</td>

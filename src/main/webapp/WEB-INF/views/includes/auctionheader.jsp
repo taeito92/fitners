@@ -104,7 +104,7 @@
                         <span class="text">fitnersofficial@email.com</span>
                     </div>
                     <div class="col-md-5 pr-4 d-flex topper align-items-center text-lg-right">
-                        <span class="text">Reverse Auction &amp; Fundings</span>
+                        <span class="text">Reverse Auction</span>
                     </div>
                 </div>
             </div>

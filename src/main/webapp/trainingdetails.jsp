@@ -17,7 +17,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr id="trainglist">
+            <tr id="tr1">
                 <td>3</td>
                 <td>곽용태</td>
                 <td>근성장</td>
@@ -109,7 +109,7 @@
 <script>
     const detailmodal = $("#modal-lg")
 
-    document.querySelector("#trainermanagement").addEventListener("click", (e) => {
+    document.querySelector("#tr1").addEventListener("click", (e) => {
 
 
 
@@ -123,7 +123,7 @@
 
     function moveRead(bno) {
 
-        actionForm.setAttribute("action","/trainingread.jsp")
+        actionForm.setAttribute("action","/trainingRead.jsp")
         actionForm.innerHTML += `<input type='hidden' name='bno' value='\${bno}'>`
         actionForm.submit();
     }

@@ -41,7 +41,7 @@ public class Fboard {
                     .uuid(boardAttach.getUuid())
                     .fileName(boardAttach.getFileName())
                     .uploadPath(boardAttach.getPath())
-                    .image(boardAttach.isImage()) //image의 경우 boolean이라 isImage
+                    .image(boardAttach.isImage())
                     .build();
             return uploadResponseDTO;
         }).collect(Collectors.toList());

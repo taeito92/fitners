@@ -2,101 +2,132 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@include file="WEB-INF/views/includes/auctionheader.jsp" %>
 <!-- Content Wrapper. Contains page content -->
+
+<!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper col-10" style="margin: auto; margin-top: 15px">
     <!-- Content Header (Page header) -->
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>입찰하기</h1>
+                <div class="col-9">
+                    <h1>역경매 입찰</h1>
+                    <div style="font-size: 11pt"><b>~~~의 역경매</b> <span style="font-size: 8pt">글작성시간 : ~~~</span></div>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
-        <hr>
     </section>
 
     <!-- Main content -->
     <section class="content">
 
         <!-- Default box -->
-        <div class="card col-10" style="margin: auto">
-            <div class="card-body row">
-                <div class="col-5 text-center d-flex align-items-center justify-content-center">
-                    <div class="readimg">
-                        <img src="/resources/images/avengers.jpg"
-                             style="display: block; margin: 0 auto; width:100%; height:100%;">
-                    </div>
-                </div>
-                <div class="col-7">
-                    <div class="form-group">
-                        <label for="inputTitle">제목</label>
-                        <input type="text" id="inputTitle" class="form-control"
-                               value="돈암동 PT쌤 찾습니다!" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputId">회원 아이디</label>
-                        <input type="text" id="inputId" class="form-control"
-                               value="gpfckd8894" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputMoney">금액</label>
-                        <input type="text" id="inputMoney" class="form-control"
-                               value="총 10회/ 회당 :30.000원" readonly/>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputMessage">조건</label>
-                        <input type="text" id="inputMessage" class="form-control"
-                               value="#재활-허리 #재활-목 #PT-상체 #PT-하체 #식단-체중감소 #혈당조절 #서울시 성북구 돈암동 #10회 #여자트레이너" readonly/>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary toListBtn">목록</button>
-                        <button type="button" class="btn btn-info float-right toModalBtn">입찰</button>
-                    </div>
-                </div>
+        <div class="card card-solid">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-sm-6">
+                        <!-- About Me Box -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Information</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <strong><i class="fas fa-user mr-1"></i> 성별(나이)</strong>
 
+                                <p class="text-muted">
+                                    남자(26세)
+                                </p>
 
-            </div>
-        </div>
+                                <hr>
 
-    </section>
-    <!-- /.content -->
-</div>
-<!-- /.content-wrapper -->
+                                <strong><i class="fas fa-map-marker-alt mr-1"></i> 위치</strong>
 
-<div class="modal fade" id="modal-sm">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content">
+                                <p class="text-muted">서울시 종로구 관철동</p>
 
-            <div class="modal-body justify-content-between">
+                                <hr>
 
-                <div class="card">
-                    <div class="card-body box-profile">
-                        <div class="text-center">
-                            <img class="profile-user-img img-fluid img-circle"
-                                 src="/resources/images/sample.jpg"
-                                 alt="User profile picture">
+                                <strong><i class="fas fa-pencil-alt mr-1"></i>키/몸무게/질병</strong>
+
+                                <p class="text-muted">
+                                    <span class="tag tag-danger">172cm</span>
+                                    <span class="tag tag-success">70kg</span>
+                                    <span class="tag tag-info"></span>
+                                </p>
+
+                                <hr>
+
+                                <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
+
+                                <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                    <div class="col-12 col-sm-6">
+                        <h4 class="my-3 text-center"><b>운동초보자 PT 선생님 모집</b></h4>
+                        <hr>
+                        <!-- Table row -->
+                        <table class="table-striped col-8 text-center" style="margin: auto; flex: auto">
+                            <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Detail</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>식단관리</td>
+                                <td>탄단지 완벽식단</td>
+                            </tr>
+                            <tr>
+                                <td>운동 종목</td>
+                                <td>상체조지기</td>
+                            </tr>
+                            <tr>
+                                <td>재활 종목</td>
+                                <td>족저근막염</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <hr>
+
+                        <div class="bg-gray py-2 px-3 mt-4">
+                            <h6 class="mt-0">
+                                <small>회원 제시 금액(1회 기준) :</small>
+                            </h6>
+                            <h6 class="mb-0">
+                                <i class="fas fa-won-sign fa-lg mr-2"></i><span style="font-size: 22pt">20000</span> 원
+                            </h6>
                         </div>
 
-                        <h3 class="profile-username text-center">gpfckd8944</h3>
-                        <p class="text-muted text-center">#재활-허리 #재활-목 #PT-상체 #PT-하체 #식단-체중감소 #혈당조절 #서울시 성북구 돈암동 #10회 #여자트레이너</p>
+                        <div class="mt-4">
+                            <div class="btn btn-primary btn-lg btn-flat">
+                                <i class="fas fa-file-alt fa-lg mr-2"></i>
+                                목록으로
+                            </div>
 
-                        <ul class="list-group list-group-unbordered mb-3">
-                            <li class="list-group-item">
-                                <b>회원 제시금액</b> <a class="float-right">30,000원</a>
-                            </li>
+                            <div class="btn btn-default btn-lg btn-flat">
+                                <i class="fas fa-check fa-lg mr-2"></i>
+                                입찰하기
+                            </div>
+                        </div>
 
-                        </ul>
-                        <p><b>제안금액</b> : <input type="text" class="trainerBiddingMoney"></p>
+
                     </div>
                 </div>
-                <button type="button" class="btn btn-default" data-dismiss="modal">종료</button>
-                <button type="button" class="btn btn-primary operBtn" style="float: right">입찰</button>
+                <!---------------------------------------------------------------------------------->
+
+
+                <!-- /.col -->
             </div>
+            <!-- /.row -->
         </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
+        <!-- /.content -->
+    </section>
+    <!-- /.content-wrapper -->
 </div>
+
 
 
 <%@include file="WEB-INF/views/includes/footer.jsp" %>

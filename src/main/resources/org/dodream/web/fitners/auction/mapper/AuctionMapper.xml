@@ -4,8 +4,39 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.dodream.web.fitners.auction.mapper.AuctionMapper">
 
-    <insert id="insertAuction">
-        insert into tbl_appliance
-    </insert>
+    <resultMap id="auctionMap" type="org.dodream.web.fitners.auction.domain.Auction">
+        <id property="ano" column="ano"/>
+        <result property="location" column="location"/>
+        <result property="state" column="state"/>
+        <result property="mid" column="mid"/>
+        <result property="price" column="price"/>
+        <result property="regDate" column="regDate"/>
+        <result property="membership" column="membership"/>
+        <result property="useMembership" column="useMembership"/>
+        <result property="viewCount" column="viewCount"/>
+        <result property="likeCount" column="likeCount"/>
+        <result property="title" column="title"/>
+
+        <collection property="programList" resultMap="programMap"/>
+    </resultMap>
+
+    <resultMap id="programMap" type="org.dodream.web.fitners.auction.domain.Program">
+        <result property="ano" column="ano"/>
+        <result property="module" column="module"/>
+        <result property="detail" column="detail"/>
+    </resultMap>
+
+    <select id="selectAuction" resultMap="auctionMap">
+        select *
+        from
+            tbl_auction ta left join tbl_auction_category tac on ta.ano = tac.ano
+        where ta.ano = #{ano}
+
+
+    </select>
+
+    <select id="selectMemberPhysical" resultType="org.dodream.web.fitners.common.domain.MemberPhysical">
+        select * from tbl_member_physical where mid = #{mid}
+    </select>
 
 </mapper>
