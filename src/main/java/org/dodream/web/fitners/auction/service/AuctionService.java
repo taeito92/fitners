@@ -11,4 +11,6 @@ public interface AuctionService {
     AuctionDTO read(Long ano);
 
     MemberPhysicalDTO getMemberPhysical(String mid);
+
+
 }

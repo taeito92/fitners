@@ -22,6 +22,7 @@ public class Fboard {
     private String writer;
     private Timestamp regDate;
     private Timestamp modDate;
+    private int viewCount;
 
     @Builder.Default
     private List<FboardAttach> attachList = new ArrayList<>();
@@ -34,6 +35,7 @@ public class Fboard {
                 .writer(writer)
                 .regDate(regDate)
                 .modDate(modDate)
+                .viewCount(viewCount)
                 .build();
 
         List<UploadResponseDTO> uploadResponseDTOList = attachList.stream().map(boardAttach -> {

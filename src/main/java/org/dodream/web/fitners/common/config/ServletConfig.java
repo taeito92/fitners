@@ -5,6 +5,7 @@ import org.dodream.web.fitners.auction.config.AuctionRootConfig;
 import org.dodream.web.fitners.auction.config.AuctionServletConfig;
 import org.dodream.web.fitners.common.converter.StringToLocalDateTimeConverter;
 import org.dodream.web.fitners.fboard.config.FboardServletConfig;
+import org.dodream.web.fitners.gallery.config.GalleryServletConfig;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.format.FormatterRegistry;
@@ -17,8 +18,8 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
-@Import({AuctionServletConfig.class, FboardServletConfig.class})
-@ComponentScan(basePackages = {"org.dodream.web.fitners.common.controller"})
+@Import({AuctionServletConfig.class, FboardServletConfig.class, GalleryServletConfig.class})
+@ComponentScan(basePackages = {"org.dodream.web.fitners.common.controller", "org.dodream.web.fitners.common.exception"})
 public class ServletConfig implements WebMvcConfigurer {
 
     @Override

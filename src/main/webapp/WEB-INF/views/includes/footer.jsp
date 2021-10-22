@@ -86,6 +86,7 @@
 <script src="/resources/dist/js/scrollax.min.js"></script>
 <script src="/resources/dist/js/google-map.js"></script>
 <script src="/resources/dist/js/main.js"></script>
+<script src="../plugins/ekko-lightbox/ekko-lightbox.min.js"></script>
 
 <!-- jQuery -->
 <script src="/resources/plugins/jquery/jquery.min.js"></script>
@@ -102,4 +103,4 @@
 <script src="/resources/dist/js/adminlte.js"></script>
 
 
-
+<script src="../plugins/filterizr/jquery.filterizr.min.js"></script>

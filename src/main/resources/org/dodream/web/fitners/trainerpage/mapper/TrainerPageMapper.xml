@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dodream.web.fitners.trainerpage.mapper.TrainerPageMapper">
+
+    <select id="">
+
+    </select>
+
+    <resultMap id="auctionMap" type="org.dodream.web.fitners.auction.domain.Auction">
+        <id property="ano" column="ano"/>
+        <result property="location" column="location"/>
+        <result property="state" column="state"/>
+        <result property="mid" column="mid"/>
+        <result property="price" column="price"/>
+        <result property="regDate" column="regDate"/>
+        <result property="membership" column="membership"/>
+        <result property="useMembership" column="useMembership"/>
+        <result property="viewCount" column="viewCount"/>
+        <result property="likeCount" column="likeCount"/>
+        <result property="title" column="title"/>
+        <collection property="programList" resultMap="programMap"/>
+        <collection property="biddingList" resultMap="biddingMap"/>
+    </resultMap>
+
+    <resultMap id="programMap" type="org.dodream.web.fitners.auction.domain.Program">
+        <result property="ano" column="ano"/>
+        <result property="module" column="module"/>
+        <result property="detail" column="detail"/>
+    </resultMap>
+
+    <resultMap id="biddingMap" type="org.dodream.web.fitners.auction.domain.Bidding">
+        <id property="bidno" column="bidno"/>
+        <result property="ano" column="ano"/>
+        <result property="tid" column="tid"/>
+        <result property="price" column="price"/>
+        <result property="regDate" column="regDate"/>
+        <result property="acceptDate" column="acceptDate"/>
+        <result property="accept" column="accept"/>
+    </resultMap>
+
+
+
+    <select id="selectBiddingList" resultMap="auctionMap">
+        select ta.ano, title, mid, module, temp.price, acceptDate, accept
+        from tbl_auction ta
+            left join (
+            select tac.ano,
+            tid,
+            group_concat(module) as module,
+            price,
+            acceptDate,
+            accept
+            from tbl_auction_category tac
+            left join tbl_bidding tb on tac.ano = tb.ano
+            group by tid
+            ) temp on ta.ano = temp.ano
+        where tid = #{tid}
+        ;
+
+    </select>
+
+</mapper>

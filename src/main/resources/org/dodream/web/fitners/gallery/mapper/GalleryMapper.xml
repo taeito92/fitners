@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dodream.web.fitners.gallery.mapper.GalleryMapper">
+
+    <insert id="insert">
+        insert into tbl_gallery (title,content,writer)
+        values (#{title},#{content},#{writer})
+        <selectKey order="AFTER" resultType="long" keyProperty="gno">
+            select last_insert_id()
+        </selectKey>
+    </insert>
+
+    <sql id="search">
+        <if test="type != null">
+            <foreach collection="arr" item="item" separator=" OR " open="WHERE (" close=")">
+                <if test="item == 'T'.toString()">
+                    title like concat('%', #{keyword}, '%')
+                </if>
+                <if test="item == 'C'.toString()">
+                    content like concat('%', #{keyword}, '%')
+                </if>
+                <if test="item == 'W'.toString()">
+
+                    writer like concat('%', #{keyword}, '%')
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+    <select id="getList" resultType="org.dodream.web.fitners.gallery.domain.Gallery">
+        select * from tbl_gallery
+
+        <include refid="search"></include>
+
+        order by gno desc limit #{skip},#{size}
+    </select>
+
+    <select id="getCount" resultType="int">
+        select count(gno) from tbl_gallery
+
+        <include refid="search"></include>
+    </select>
+
+    <resultMap id="galleryMap" type="org.dodream.web.fitners.gallery.domain.Gallery">
+        <id property="gno" column="gno"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="writer" column="writer"/>
+        <result property="regDate" column="regDate"/>
+        <result property="modDate" column="modDate"/>
+        <result property="viewCount" column="viewCount"/>
+
+        <collection property="attachList" resultMap="attachMap"/>
+    </resultMap>
+
+    <resultMap id="attachMap" type="org.dodream.web.fitners.gallery.domain.GalleryAttach">
+        <result property="uuid" column="uuid"/>
+        <result property="gno" column="gno"/>
+        <result property="fileName" column="fileName"/>
+        <result property="path" column="path"/>
+        <result property="image" column="image"/>
+    </resultMap>
+
+    <select id="select" resultMap="galleryMap">
+        select *
+        from
+            tbl_gallery gallery left join tbl_gallery_attach tga on gallery.gno = tga.gno
+        where gallery.gno = #{gno}
+    </select>
+
+
+
+    <delete id="delete">
+        delete from tbl_gallery where gno = #{gno}
+    </delete>
+
+    <update id="update">
+        update tbl_gallery set title = #{title}, content = #{content}, modDate = now()
+        where gno = #{gno}
+    </update>
+
+    <insert id="insertAttach">
+        insert into tbl_gallery_attach (uuid, gno, path, fileName, image)
+        values (#{uuid}, #{gno}, #{path}, #{fileName}, #{image})
+    </insert>
+
+    <delete id="deleteAttach">
+        delete from tbl_gallery_attach where gno = #{gno}
+    </delete>
+
+</mapper>

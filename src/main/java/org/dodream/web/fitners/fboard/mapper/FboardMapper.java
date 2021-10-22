@@ -24,4 +24,6 @@ public interface FboardMapper {
 
     void deleteAttach(Long bno);
 
+    void updateViewCount(Long bno);
+
 }

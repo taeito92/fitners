@@ -22,6 +22,7 @@ public class FboardDTO {
     private String writer;
     private Timestamp regDate;
     private Timestamp modDate;
+    private int viewCount;
 
     @Builder.Default
     private List<UploadResponseDTO> files = new ArrayList<>();
@@ -34,6 +35,7 @@ public class FboardDTO {
                 .writer(writer)
                 .regDate(regDate)
                 .modDate(modDate)
+                .viewCount(viewCount)
                 .build();
 
         files.forEach(uploadResponseDTO -> {

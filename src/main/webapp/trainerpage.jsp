@@ -141,43 +141,53 @@
                                         <th>회원 이름(아이디)</th>
                                         <th>모듈</th>
                                         <th>본인이 제시한 금액</th>
-                                        <th>남은 경매 시간</th>
+
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr style="cursor: pointer" onclick="location.href='trainerRead.jsp'">
-                                        <td>4</td>
-                                        <td>제목</td>
-                                        <td>taeito</td>
-                                        <td>식단</td>
-                                        <td>5000</td>
-                                        <td>15분 남음</td>
 
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>바디프로틸 사진찍고 싶어요</td>
-                                        <td>pig356</td>
-                                        <td>근력운동</td>
-                                        <td>6000</td>
-                                        <td>20분 남음</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>날씬해지고 싶어요</td>
-                                        <td>pig444</td>
-                                        <td>식단</td>
-                                        <td>2000</td>
-                                        <td>1시간 50분 남음</td>
-                                    </tr>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>근육을 키우고 싶어요</td>
-                                        <td>weight130</td>
-                                        <td>근력운동</td>
-                                        <td>2000</td>
-                                        <td>15시간 남음</td>
-                                    </tr>
+                                    <c:forEach items="${tpdtolist}" var="dto">
+                                        <tr style="cursor: pointer" onclick="location.href='trainerRead.jsp'">
+                                            <td class="bnoTh"><c:out value="${dto.ano}"></c:out></td>
+                                            <td><c:out value="${dto.title}"></c:out></td>
+                                            <td><c:out value="${dto.mid}"></c:out></td>
+                                            <td><c:out value="${dto.module}"></c:out></td>
+                                            <td><c:out value="${dto.price}"></c:out></td>
+                                        </tr>
+                                    </c:forEach>
+<%--                                    <tr style="cursor: pointer" onclick="location.href='trainerRead.jsp'">--%>
+<%--                                        <td>4</td>--%>
+<%--                                        <td>제목</td>--%>
+<%--                                        <td>taeito</td>--%>
+<%--                                        <td>식단</td>--%>
+<%--                                        <td>5000</td>--%>
+<%--                                        --%>
+
+<%--                                    </tr>--%>
+<%--                                    <tr>--%>
+<%--                                        <td>3</td>--%>
+<%--                                        <td>바디프로틸 사진찍고 싶어요</td>--%>
+<%--                                        <td>pig356</td>--%>
+<%--                                        <td>근력운동</td>--%>
+<%--                                        <td>6000</td>--%>
+<%--                                       --%>
+<%--                                    </tr>--%>
+<%--                                    <tr>--%>
+<%--                                        <td>2</td>--%>
+<%--                                        <td>날씬해지고 싶어요</td>--%>
+<%--                                        <td>pig444</td>--%>
+<%--                                        <td>식단</td>--%>
+<%--                                        <td>2000</td>--%>
+<%--                                       --%>
+<%--                                    </tr>--%>
+<%--                                    <tr>--%>
+<%--                                        <td>1</td>--%>
+<%--                                        <td>근육을 키우고 싶어요</td>--%>
+<%--                                        <td>weight130</td>--%>
+<%--                                        <td>근력운동</td>--%>
+<%--                                        <td>2000</td>--%>
+<%--                                        --%>
+<%--                                    </tr>--%>
                                     </tbody>
                                 </table>
 

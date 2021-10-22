@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.dodream.web.fitners.fboard.dto.FreplyDTO;
 import org.dodream.web.fitners.fboard.service.FreplyService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class FreplyController {
 
     private final FreplyService freplyService;
 
+    @PreAuthorize("isAuthenticated()")
     @PostMapping("")
     public void addReply(@RequestBody FreplyDTO freplyDTO) {
         log.warn("==============add reply!!==============");

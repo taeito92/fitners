@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.dodream.web.fitners.gallery.mapper.GalleryTimeMapper">
+
+    <select id="getTime2" resultType="string"> <!-- 원래는 resultType에 java.lang.String으로 적어야 하지만 통칭 string 으로 가능 -->
+        select now()
+    </select>
+
+</mapper>

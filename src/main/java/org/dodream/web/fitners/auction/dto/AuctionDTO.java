@@ -2,6 +2,7 @@ package org.dodream.web.fitners.auction.dto;
 
 import lombok.*;
 import org.dodream.web.fitners.auction.domain.Auction;
+import org.dodream.web.fitners.auction.domain.Bidding;
 import org.dodream.web.fitners.auction.domain.Program;
 
 import java.sql.Timestamp;
@@ -31,6 +32,9 @@ public class AuctionDTO {
     @Builder.Default
     List<ProgramDTO> programDTOList = new ArrayList<>();
 
+    @Builder.Default
+    List<BiddingDTO> biddingDTOList = new ArrayList<>();
+
     public Auction getDomain() {
         Auction auction = Auction.builder()
                 .ano(ano)
@@ -55,8 +59,23 @@ public class AuctionDTO {
             auction.addProgram(program);
         });
 
+        biddingDTOList.forEach(biddingDTO -> {
+            Bidding bidding = Bidding.builder()
+                    .bidno(biddingDTO.getBidno())
+                    .ano(ano)
+                    .tid(biddingDTO.getTid())
+                    .price(biddingDTO.getPrice())
+                    .readDate(biddingDTO.getReadDate())
+                    .acceptDate(biddingDTO.getAcceptDate())
+                    .accept(biddingDTO.isAccept())
+                    .build();
+
+        });
+
         return auction;
     }
+
+
 
 
 }

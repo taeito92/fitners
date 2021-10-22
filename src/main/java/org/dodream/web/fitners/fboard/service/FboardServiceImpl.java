@@ -51,6 +51,8 @@ public class FboardServiceImpl implements FboardService {
     @Override
     public FboardDTO read(Long bno) {
         Fboard fboard = fboardMapper.select(bno);
+        //조회수증가
+        fboardMapper.updateViewCount(bno);
 
         if (fboard != null) {
             return fboard.getDTO();

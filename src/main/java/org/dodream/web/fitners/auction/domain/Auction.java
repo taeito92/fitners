@@ -2,6 +2,7 @@ package org.dodream.web.fitners.auction.domain;
 
 import lombok.*;
 import org.dodream.web.fitners.auction.dto.AuctionDTO;
+import org.dodream.web.fitners.auction.dto.BiddingDTO;
 import org.dodream.web.fitners.auction.dto.ProgramDTO;
 import org.dodream.web.fitners.fboard.domain.FboardAttach;
 
@@ -33,6 +34,10 @@ public class Auction {
     @Builder.Default
     private List<Program> programList = new ArrayList<>();
 
+    @Builder.Default
+    private List<Bidding> biddingList = new ArrayList<>();
+
+
     public AuctionDTO getDTO() {
         AuctionDTO auctionDTO = AuctionDTO.builder()
                 .ano(ano)
@@ -58,6 +63,21 @@ public class Auction {
         }).collect(Collectors.toList());
 
         auctionDTO.setProgramDTOList(programDTOList);
+
+        List<BiddingDTO> biddingDTOList = biddingList.stream().map(bidding -> {
+            BiddingDTO biddingDTO = BiddingDTO.builder()
+                    .bidno(bidding.getBidno())
+                    .ano(bidding.getAno())
+                    .tid(bidding.getTid())
+                    .price(bidding.getPrice())
+                    .readDate(bidding.getReadDate())
+                    .acceptDate(bidding.getAcceptDate())
+                    .accept(bidding.isAccept())
+                    .build();
+            return biddingDTO;
+        }).collect(Collectors.toList());
+
+        auctionDTO.setBiddingDTOList(biddingDTOList);
 
         return auctionDTO;
     }
